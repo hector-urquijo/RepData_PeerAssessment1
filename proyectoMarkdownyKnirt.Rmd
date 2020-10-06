@@ -1,0 +1,36 @@
+---
+title: "proyecto_MarkdownyKnirt"
+author: "Hector Urquijo"
+date: "29/9/2020"
+output: html_document
+---
+##Creacion de una marco de datos (data.frame).
+
+1 Primero creamos tres vectores (alumnos, parcial y escala)
+
+2 creamos el marco de datos notas y le asignamos los vectores creados en el paso 1
+
+3 Luego se puede observar un resumen de la media, mediana 
+
+4 Se visualiza graficamente las notas de todos los alumnos.
+
+
+```{r, echo=TRUE}
+library(ggplot2)
+alumnos <- c("Mario","Luis","Pedro","Alvaro","Ana","Alba","Luisa","Miguel","Lupe","Tatis", "Paula","Maria","Jose","Leon","Mary")
+parcial <- c(3.5 , 2.8, 4.5, 3.8, 4.5, 5.0, 3.2, 4.2, 3.2, 2.5, 1.8, 4.0, 3.7, 4.2, 4.8)
+escala <- c("R","M","B","R","B","E","R","B","R","M","M","B","R","B","E")
+notas <- data.frame(alumnos, parcial,escala)
+notas
+summary(notas)
+g <-ggplot(notas, aes(alumnos,parcial))
+g + geom_point() + geom_smooth(method = lm, colour = "green")
+```
+
+## AGRUPAMIENTO DE CALIFICACIONES POR INTERVALOS Y ALUMNOS
+Presentation grafica de notas agrupadas por intervalos y mostrada por grupos de alumnos.
+
+```{r notas, echo=FALSE}
+hist(notas$parcial, main ="notas alumnos", xlab = "Calificacion", ylab = "nro de alumnos",col = "red")
+```
+
