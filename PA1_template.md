@@ -121,11 +121,6 @@ print(paste("El valor de la mediana es",median(pasospordia$total_pasos)))
 ## 104      835 206.1698
 ```
 
-    #intervalo que tiene los pasos promedio más altos
-    print (paste("El intervalo con los pasos promedio más altos es ",   intervalo_pasos[intervalos_max, ]$interval," y el número de pasos para ese intervalo es ",
-             round(intervalo_pasos[intervalos_max, ]$steps, digits = 1)))
-
-
 ## Imputing missing values
 
 ```r
@@ -209,12 +204,13 @@ print(paste("El valor de la mediana es",median(pasospordia$total_pasos)))
     #Función para determinar si la fecha es un día de la semana
     semana_dia <- function(valor_fecha) {
       semdia <- weekdays(as.Date(valor_fecha, '%Y-%m-%d'))
-      if  (!(semdia == 'Saturday' || semdia == 'Sunday')) {
-        a <- 'Weekday'
-      } else {
-        a <- 'Weekend'
+      if   (!(semdia == 'sábado' || semdia == 'domingo')) {
+           a <- 'Weekday'
       }
-      a
+      else {
+           a <- 'Weekend'
+      }
+     
     }
     #Aplicar la función al conjunto de datos para crear una nueva variable de tipo de día
     datos_asignados$day_type <- as.factor(sapply(datos_asignados$date, semana_dia))
